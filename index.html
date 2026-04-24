@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Check</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #7c3aed, #5b21b6);
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 400px;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    button {
+        flex: 1;
+        padding: 14px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .yes {
+        background: #22c55e;
+        color: white;
+    }
+
+    .yes:active {
+        transform: scale(0.96);
+    }
+
+    .no {
+        background: #ef4444;
+        color: white;
+    }
+
+    .no:active {
+        transform: scale(0.96);
+    }
+
+    .denied {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #fca5a5;
+        display: none;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 20px;
+        }
+
+        button {
+            font-size: 14px;
+            padding: 12px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1 id="title">Loading...</h1>
+
+    <div class="buttons">
+        <button class="yes" onclick="accept()"></button>
+        <button class="no" onclick="deny()"></button>
+    </div>
+
+    <div class="denied" id="denied"></div>
+</div>
+
+<script>
+const translations = {
+    en: {
+        title: "Are you 18 years old?",
+        yes: "Yes",
+        no: "No",
+        denied: "Access denied"
+    },
+    de: {
+        title: "Bist du 18 Jahre alt?",
+        yes: "Ja",
+        no: "Nein",
+        denied: "Zugriff verweigert"
+    },
+    pl: {
+        title: "Czy masz 18 lat?",
+        yes: "Tak",
+        no: "Nie",
+        denied: "Odmowa dostępu"
+    },
+    fr: {
+        title: "Avez-vous 18 ans ?",
+        yes: "Oui",
+        no: "Non",
+        denied: "Accès refusé"
+    },
+    it: {
+        title: "Hai 18 anni?",
+        yes: "Sì",
+        no: "No",
+        denied: "Accesso negato"
+    },
+    es: {
+        title: "¿Tienes 18 años?",
+        yes: "Sí",
+        no: "No",
+        denied: "Acceso denegado"
+    },
+    uk: {
+        title: "Вам виповнилось 18 років?",
+        yes: "Так",
+        no: "Ні",
+        denied: "Доступ заборонено"
+    },
+    nl: {
+        title: "Ben je 18 jaar oud?",
+        yes: "Ja",
+        no: "Nee",
+        denied: "Toegang geweigerd"
+    },
+    sv: {
+        title: "Är du 18 år?",
+        yes: "Ja",
+        no: "Nej",
+        denied: "Åtkomst nekad"
+    },
+    cs: {
+        title: "Je vám 18 let?",
+        yes: "Ano",
+        no: "Ne",
+        denied: "Přístup odepřen"
+    }
+};
+
+// detect language
+let userLang = navigator.language.slice(0, 2);
+if (!translations[userLang]) {
+    userLang = "en";
+}
+
+// apply text
+document.getElementById("title").innerText = translations[userLang].title;
+document.querySelector(".yes").innerText = translations[userLang].yes;
+document.querySelector(".no").innerText = translations[userLang].no;
+document.getElementById("denied").innerText = translations[userLang].denied;
+
+// actions
+function accept() {
+    window.location.href = "https://www.google.com";
+}
+
+function deny() {
+    document.getElementById("denied").style.display = "block";
+}
+</script>
+
+</body>
+</html>
